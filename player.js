@@ -23,9 +23,18 @@ btn_play_pause.onclick = function(){
   toggle_play_pause();
 };
 
-player.ontimeupdate = function(e){
-  console.log(e.timeStamp, player.duration);
+progress_bar.onclick = function(e){
+  console.log(e);
 };
+/*
+Is not smooth enough to display timings
+player.ontimeupdate = function(e){
+  updateTimeDisplay(player.currentTime, player.duration);
+};
+*/
+setInterval(function(){
+  updateTimeDisplay(player.currentTime, player.duration);
+}, 10);
 
 //* END EVENTS */
 
@@ -36,6 +45,23 @@ function resize(){
   player.width = window.innerWidth;
   player.height = window.innerHeight;
 };
+
+function updateTimeDisplay(currentTime, duration){
+  if(duration < 0){
+    return;
+  }
+  var ct_s = Math.floor(currentTime % 60);
+  var ct_m = Math.floor(currentTime / 60);
+  var d_s = Math.floor(duration % 60);
+  var d_m = Math.floor(duration / 60);
+  ct_s = ct_s < 10 ? '0' + ct_s : ct_s;
+  ct_m = ct_m < 10 ? '0' + ct_m : ct_m;
+  d_s = d_s < 10 ? '0' + d_s : d_s;
+  d_m = d_m < 10 ? '0' + d_m : d_m;
+
+  progress_text.innerHTML = ct_m + ":" + ct_s + " / " + d_m + ":" + d_s;
+  progress_bar.value = (currentTime / duration) * 100;
+}
 
 /**
  * Toggle video playback
