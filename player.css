@@ -22,6 +22,7 @@ body{
   position: absolute;
   left: 0;
   bottom: 0;
+  transition: all .25s ease-in;
 }
 
 .left{
@@ -30,10 +31,6 @@ body{
 
 .right{
   float: right;
-}
-
-#controls{
-  transition: all .25s ease-in;
 }
 
 .control-group{
@@ -61,6 +58,10 @@ body{
   background-color: purple;
   bottom: 100%;
 }
+.control-group .popup .popup-row{
+  margin: 5px;
+  width: 100%;
+}
 
 #volume{
   opacity: 0;
@@ -77,4 +78,10 @@ body{
   height: 50px;
   transform: rotate(270deg);
   cursor: pointer;
+}
+
+#settings{
+  transition: all .25ms ease-in;
+  opacity: 0;
+  right: 0;
 }

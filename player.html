@@ -17,7 +17,25 @@
         <progress id="progress-bar" max="100"></progress>
       </div>
       <div class="control-group right"><button id="btn-fullscreen"><i class="fa fa-tv"></i></button></div>
-      <div class="control-group right"><button id="btn-settings"><i class="fa fa-gears"></i></button></div>
+      <div class="control-group right">
+        <button id="btn-settings"><i class="fa fa-gears"></i></button>
+        <div class="popup" id="settings">
+          <div class="popup-row"><input type="checkbox" id="input-loop"> Loop</div>
+          <div class="popup-row">Playback speed
+            <select id="input-playback">
+              <option value="0.25">0.25</option>
+              <option value="0.5">0.5</option>
+              <option value="1" selected>1</option>
+              <option value="1.5">1.5</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="popup-row" id="about">
+            <a href="#">About Nideo video player</a>
+          </div>
+        </div>
+      </div>
       <div class="control-group right">
         <button id="btn-volume"><i class="fa fa-volume-up"></i></button>
         <div class="popup" id="volume">
