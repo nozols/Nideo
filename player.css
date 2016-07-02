@@ -18,11 +18,12 @@ body{
 #controls{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: rgb(255, 255, 255, 0.3);
   position: absolute;
   left: 0;
   bottom: 0;
   transition: all .25s ease-in;
+  color: white;
 }
 
 .left{
@@ -44,6 +45,23 @@ body{
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  background-color: rgb(50, 50, 50);
+  border-radius: 3px;
+  border: none;
+  color: white;
+  outline: none;
+  box-shadow: 3px 3px 0px #0AA36F inset, -3px -3px 0px #0AA36F inset;
+  transition: all .25s ease-in;
+}
+
+.control-group button:hover{
+  box-shadow:
+  2px 2px 0px rgb(45, 45, 45) inset, -2px -2px 0px rgb(45, 45, 45) inset,
+  4px 4px 0px #0AA36F inset, -4px -4px 0px #0AA36F inset;
+}
+
+.control-group button:active{
+  box-shadow: 5px 5px 0px #0AA36F inset, -5px -5px 0px #0AA36F inset;
 }
 
 .control-group progress{
@@ -55,7 +73,8 @@ body{
 
 .control-group .popup{
   position: absolute;
-  background-color: purple;
+  background-color: rgb(50, 50, 50);
+  border-radius: 3px;
   bottom: 100%;
 }
 .control-group .popup .popup-row{
@@ -65,7 +84,8 @@ body{
 
 #volume{
   opacity: 0;
-  width: 50px;
+  width: 40px;
+  margin-left: 5px;
   height: 150px;
   transition: all .25ms ease-in;
 }
@@ -73,7 +93,7 @@ body{
 #input-volume{
   position: absolute;
   top: 50px;
-  left: -45px;
+  left: -50px;
   width: 140px;
   height: 50px;
   transform: rotate(270deg);

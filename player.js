@@ -127,11 +127,6 @@ progress_bar.onmousemove = function(e){
 setInterval(function(){
   updateTimeDisplay(player.currentTime, player.duration);
   mouse_still++;
-  if(mouse_still > 300){
-    player.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjbQg61aAAAADUlEQVQYV2P4//8/IwAI/QL/+TZZdwAAAABJRU5ErkJggg=='), url(none.cur), none";
-  }else{
-    player.style.cursor = '';
-  }
 }, 10);
 
 //* END EVENTS */
@@ -198,10 +193,7 @@ function togglePlayPause(){
 function pause(ended){
   is_playing = false;
   btn_play_pause.innerHTML = '<i class="fa fa-play"></i>';
-
-  if(ended){
-    player.pause();
-  }
+  player.pause();
 };
 
 /**
@@ -290,7 +282,9 @@ function unmute(){
  * Update the volume icon based on volume of playback
  */
 function updateVolumeIcon(){
-  if(player.volume > .6){
+  if(is_muted){
+    btn_volume.innerHTML = '<i class="fa fa-volume-off"></i>';
+  }else if(player.volume > .6){
     btn_volume.innerHTML = '<i class="fa fa-volume-up"></i>';
   }else if(player.volume <= .6 && player.volume != 0){
     btn_volume.innerHTML = '<i class="fa fa-volume-down"></i>';
