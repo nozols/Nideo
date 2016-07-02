@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  font-family: Arial;
 }
 body{
   overflow: hidden;
@@ -15,6 +21,29 @@ body{
   left: 0;
   bottom: 0;
 }
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+#controls{
+  transition: all .25s ease-in;
+}
 .control-group{
   display: inline;
+}
+.control-group button{
+  margin: 5px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+.control-group progress{
+  margin: 5px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
 }
