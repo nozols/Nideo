@@ -2,17 +2,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   font-family: Arial;
 }
+
 body{
   overflow: hidden;
   background-color: black;
 }
+
 #controls{
   width: 100%;
   height: 50px;
@@ -21,18 +23,23 @@ body{
   left: 0;
   bottom: 0;
 }
+
 .left{
   float: left;
 }
+
 .right{
   float: right;
 }
+
 #controls{
   transition: all .25s ease-in;
 }
+
 .control-group{
   display: inline;
 }
+
 .control-group button{
   margin: 5px;
   width: 40px;
@@ -41,9 +48,33 @@ body{
   line-height: 40px;
   cursor: pointer;
 }
+
 .control-group progress{
   margin: 5px;
   height: 40px;
   position: absolute;
+  cursor: pointer;
+}
+
+.control-group .popup{
+  position: absolute;
+  background-color: purple;
+  bottom: 100%;
+}
+
+#volume{
+  opacity: 0;
+  width: 50px;
+  height: 150px;
+  transition: all .25ms ease-in;
+}
+
+#input-volume{
+  position: absolute;
+  top: 50px;
+  left: -45px;
+  width: 140px;
+  height: 50px;
+  transform: rotate(270deg);
   cursor: pointer;
 }

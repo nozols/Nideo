@@ -6,13 +6,19 @@ var btn_play_pause = document.getElementById('btn-play-pause');
 var btn_settings = document.getElementById('btn-settings');
 var btn_fullscreen = document.getElementById('btn-fullscreen');
 var btn_volume = document.getElementById('btn-volume');
+var input_volume = document.getElementById('input-volume');
 var progress_bar = document.getElementById('progress-bar');
 var progress_text = document.getElementById('progress-text');
 var controls = document.getElementById('controls');
+var volume = document.getElementById('volume');
+input_volume.value = player.volume * 100;
 
 var is_playing = false;
 var is_dragging = false;
 var is_fullscreen = false;
+var is_muted = false;
+var mouse_still = 0;
+
 //* EVENTS *//
 
 window.onresize = function(){
@@ -23,24 +29,53 @@ window.onload = function(){
   resize();
 };
 
-window.addEventListener('mouseenter', function(){
+player.onmouseenter = function(){
   controls.style.opacity = 100;
-}, false);
+};
 
-window.addEventListener('mouseleave', function(){
+player.onmouseleave = function(){
   controls.style.opacity = 0;
-}, false);
+};
+
+player.onmousemove = function(){
+  mouse_still = 0;
+};
+
+controls.onmouseenter = function(){
+  controls.style.opacity = 100;
+};
+
+controls.onmouseleave = function(){
+  controls.style.opacity = 0;
+};
+
+controls.onmousemove = function(){
+  mouse_still = 0;
+};
 
 btn_play_pause.onclick = function(){
-  toggle_play_pause();
+  togglePlayPause();
 };
 
 btn_volume.onclick = function(){
+  toggleMute();
+};
 
+btn_volume.onmouseenter = function(){
+  volume.style.opacity = 100;
+};
+
+btn_volume.parentElement.onmouseleave = function(){
+  volume.style.opacity = 0;
 };
 
 btn_fullscreen.onclick = function(){
   fullscreenToggle();
+};
+
+input_volume.oninput = function(){
+  player.volume = input_volume.value;
+  updateVolumeIcon();
 };
 
 progress_bar.onclick = function(e){
@@ -60,14 +95,17 @@ progress_bar.onmousemove = function(e){
     setTime(e.offsetX / progress_bar.offsetWidth);
   }
 };
-/*
-Is not smooth enough to display timings
-player.ontimeupdate = function(e){
-  updateTimeDisplay(player.currentTime, player.duration);
-};
-*/
+
 setInterval(function(){
   updateTimeDisplay(player.currentTime, player.duration);
+  mouse_still++;
+  if(mouse_still > 300){
+    //player.style.cursor = 'none';
+
+    player.style.cursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjbQg61aAAAADUlEQVQYV2P4//8/IwAI/QL/+TZZdwAAAABJRU5ErkJggg=='), url(none.cur), none";
+  }else{
+    player.style.cursor = '';
+  }
 }, 10);
 
 //* END EVENTS */
@@ -120,7 +158,7 @@ function updateTimeDisplay(currentTime, duration){
 /**
  * Toggle video playback
  */
-function toggle_play_pause(){
+function togglePlayPause(){
   if(is_playing){
     pause();
   }else{
@@ -187,6 +225,38 @@ function enterFullscreen(){
     is_fullscreen = false;
   }
 }
+
+function toggleMute(){
+  if(is_muted){
+    unmute();
+  }else{
+    mute();
+  }
+};
+
+function mute(){
+  is_muted = true;
+  player.muted = true;
+  input_volume.value = 0;
+  updateVolumeIcon();
+};
+
+function unmute(){
+  is_muted = false;
+  player.muted = false;
+  input_volume.value = player.volume;
+  updateVolumeIcon();
+};
+
+function updateVolumeIcon(){
+  if(player.volume > .6){
+    btn_volume.innerHTML = '<i class="fa fa-volume-up"></i>';
+  }else if(player.volume <= .6 && player.volume != 0){
+    btn_volume.innerHTML = '<i class="fa fa-volume-down"></i>';
+  }else{
+    btn_volume.innerHTML = '<i class="fa fa-volume-off"></i>';
+  }
+};
 
 function alertMessage(msg, type){
   alert(msg);
