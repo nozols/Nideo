@@ -14,7 +14,10 @@
       <div class="control-group"><button id="btn-play-pause"><i class="fa fa-play"></i></button></div>
       <div class="control-group"><span id="progress-text">Loading</span></div>
       <div class="control-group">
-        <progress id="progress-bar" max="100"></progress>
+        <div id="progress-bar">
+          <div id="in-buffer"></div>
+          <div id="completed"></div>
+        </div>
       </div>
       <div class="control-group right"><button id="btn-fullscreen"><i class="fa fa-tv"></i></button></div>
       <div class="control-group right">

@@ -63,37 +63,63 @@ body{
 .control-group button:active{
   box-shadow: 5px 5px 0px #0AA36F inset, -5px -5px 0px #0AA36F inset;
 }
-
-.control-group progress{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
+#progress-bar{
   margin: 22.5px 5px;
   height: 5px;
   position: absolute;
   cursor: pointer;
+  transition: all .1s ease-in-out;
+  display: inline;
+  background-color: rgb(45, 45, 45);
+  border-radius: 3px;
+}
+#progress-bar:hover{
+  height: 7.5px;
+  margin: 21.25px 5px;
+}
+
+#progress-bar:hover #completed{
+  box-shadow: 0px 0px 5px white;
+}
+
+#progress-bar:hover #completed::after{
+  top: -6.25px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 4px white;
+}
+#in-buffer{
+  width: 50%;
+  height: 100%;
+  background-color: rgb(65, 65, 65);
+  border-radius: 3px
+}
+#completed{
+  height: 100%;
+  width: 30%;
+  background-color: #0AA36F;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px
+}
+#completed::after{
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: -7.5px;
+  top: -5px;
+  border-radius: 15px;
+  background-color: #0AA36F;
   transition: all .1s ease-in-out;
 }
 
 .control-group progress:hover{
   height: 7.5px;
   margin: 21.25px 5px;
-}
-
-.control-group progress:hover::-webkit-progress-value{
-  box-shadow: 0px 0px 5px #00A36F;
-}
-
-.control-group progress::-webkit-progress-bar{
-  border-radius: 3px;
-  background-color: rgb(45, 45, 45);
-}
-
-.control-group progress::-webkit-progress-value{
-  background-color: #0AA36F;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
 }
 
 .control-group .popup{

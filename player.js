@@ -9,7 +9,10 @@ var btn_volume = document.getElementById('btn-volume');
 var input_volume = document.getElementById('input-volume');
 var input_playback = document.getElementById('input-playback');
 var input_loop = document.getElementById('input-loop');
-var progress_bar = document.getElementById('progress-bar');
+//var progress_bar = document.getElementById('progress-bar');
+var progress_bar_container = document.getElementById('progress-bar');
+var progress_bar_in_buffer = document.getElementById('in-buffer');
+var progress_bar_completed = document.getElementById('completed');
 var progress_text = document.getElementById('progress-text');
 var controls = document.getElementById('controls');
 var volume = document.getElementById('volume');
@@ -37,7 +40,7 @@ player.onmouseenter = function(){
 };
 
 player.onmouseleave = function(){
-  controls.style.opacity = 0;
+  controls.style.opacity = 100;
 };
 
 player.onmousemove = function(){
@@ -53,7 +56,7 @@ controls.onmouseenter = function(){
 };
 
 controls.onmouseleave = function(){
-  controls.style.opacity = 0;
+  controls.style.opacity = 100;
 };
 
 controls.onmousemove = function(){
@@ -106,21 +109,22 @@ input_playback.onchange = function(){
   player.playbackRate = input_playback.value;
 };
 
-progress_bar.onclick = function(e){
-  setTime(e.offsetX / progress_bar.offsetWidth);
+progress_bar_container.onclick = function(e){
+  setTime(e.offsetX / progress_bar_container.offsetWidth);
+
 };
 
-progress_bar.onmousedown = function(){
+progress_bar_container.onmousedown = function(){
   is_dragging = true;
 };
 
-progress_bar.onmouseup = function(){
+progress_bar_container.onmouseup = function(){
   is_dragging = false;
 };
 
-progress_bar.onmousemove = function(e){
+progress_bar_container.onmousemove = function(e){
   if(is_dragging){
-    setTime(e.offsetX / progress_bar.offsetWidth);
+    setTime(e.offsetX / progress_bar_container.offsetWidth);
   }
 };
 
@@ -138,13 +142,12 @@ function resize(){
   player.width = window.innerWidth;
   player.height = window.innerHeight;
 
-  progress_bar.style.width = player.width - 50 - 50 - progress_text.offsetWidth - 10 +'px';
   if(player.width < 460){
     progress_text.style.display = 'none';
-    progress_bar.style.width = player.width - 50 - 50 - 50 - 50 - 10 +'px';
+    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - 10 +'px';
   }else{
     progress_text.style.display = 'inline';
-    progress_bar.style.width = player.width - 50 - 50 - 50 - 50 - progress_text.offsetWidth - 10 +'px';
+    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - progress_text.offsetWidth - 10 +'px';
   }
 };
 
@@ -173,7 +176,8 @@ function updateTimeDisplay(currentTime, duration){
   d_m = d_m < 10 ? '0' + d_m : d_m;
 
   progress_text.innerHTML = ct_m + ":" + ct_s + " / " + d_m + ":" + d_s;
-  progress_bar.value = (currentTime / duration) * 100;
+  progress_bar_completed.style.width = (currentTime / duration) * 100 + '%';
+  progress_bar_in_buffer.style.width = (player.buffered.end(0) / duration) * 100 + '%';
 };
 
 /**
