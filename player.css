@@ -18,7 +18,7 @@ body{
 #controls{
   width: 100%;
   height: 50px;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 0;
   bottom: 0;
@@ -65,10 +65,35 @@ body{
 }
 
 .control-group progress{
-  margin: 5px;
-  height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  margin: 22.5px 5px;
+  height: 5px;
   position: absolute;
   cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.control-group progress:hover{
+  height: 7.5px;
+  margin: 21.25px 5px;
+}
+
+.control-group progress:hover::-webkit-progress-value{
+  box-shadow: 0px 0px 5px #00A36F;
+}
+
+.control-group progress::-webkit-progress-bar{
+  border-radius: 3px;
+  background-color: rgb(45, 45, 45);
+}
+
+.control-group progress::-webkit-progress-value{
+  background-color: #0AA36F;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .control-group .popup{
