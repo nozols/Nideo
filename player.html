@@ -11,24 +11,24 @@
       Your browser does not support the video tag. :(
     </video>
     <div id="controls">
-      <div class="control-group"><button id="btn-play-pause"><i class="fa fa-play"></i></button></div>
-      <div class="control-group"><span id="progress-text">Loading</span></div>
+      <div class="control-group"><button id="btn-play-pause" title="play/pause"><i class="fa fa-play"></i></button></div>
+      <div class="control-group"><span id="progress-text" title="progress">Loading</span></div>
       <div class="control-group">
         <div id="progress-bar">
           <div id="in-buffer"></div>
           <div id="completed"></div>
         </div>
       </div>
-      <div class="control-group right"><button id="btn-fullscreen"><i class="fa fa-tv"></i></button></div>
+      <div class="control-group right"><button id="btn-fullscreen" title="Fullscreen"><i class="fa fa-tv"></i></button></div>
       <div class="control-group right">
-        <button id="btn-settings"><i class="fa fa-gears"></i></button>
+        <button id="btn-settings" title="settings"><i class="fa fa-gears"></i></button>
         <div class="popup" id="settings">
           <div class="popup-row">Loop<input type="checkbox" id="input-loop" class="right"></div>
           <div class="popup-row">Playback speed
             <select id="input-playback" class="right">
               <option value="0.25">0.25</option>
               <option value="0.5">0.5</option>
-              <option value="1" selected>1</option>
+              <option value="1" selected>Normal</option>
               <option value="1.5">1.5</option>
               <option value="2">2</option>
               <option value="4">4</option>
@@ -40,10 +40,18 @@
         </div>
       </div>
       <div class="control-group right">
-        <button id="btn-volume"><i class="fa fa-volume-up"></i></button>
+        <button id="btn-volume" title="Volume"><i class="fa fa-volume-up"></i></button>
         <div class="popup" id="volume">
           <input id="input-volume" type="range" min="0" max="1" step="0.01"/>
         </div>
+      </div>
+    </div>
+    <div id="title">
+      <h1 id="title-text"><!-- SET CONTENT USING ?title={title} --></h1>
+    </div>
+    <div id="share">
+      <div class="control-group">
+        <button id="btn-share"><i class="fa fa-share"></i></button>
       </div>
     </div>
     <script src="player.js"></script>

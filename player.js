@@ -1,5 +1,9 @@
 'use_strict';
 
+var _GET = {};
+location.search.substr(1).split("&").forEach(function(item) {_GET[item.split("=")[0]] = item.split("=")[1]});
+console.log(_GET);
+
 var player = document.getElementById('main-player');
 player.removeAttribute('controls');
 var btn_play_pause = document.getElementById('btn-play-pause');
@@ -14,6 +18,10 @@ var progress_bar_container = document.getElementById('progress-bar');
 var progress_bar_in_buffer = document.getElementById('in-buffer');
 var progress_bar_completed = document.getElementById('completed');
 var progress_text = document.getElementById('progress-text');
+var title_text = document.getElementById('title-text');
+if(_GET.title){
+  title_text.innerHTML = decodeURI(_GET.title);
+}
 var controls = document.getElementById('controls');
 var volume = document.getElementById('volume');
 input_volume.value = player.volume * 100;
@@ -144,10 +152,10 @@ function resize(){
 
   if(player.width < 460){
     progress_text.style.display = 'none';
-    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - 10 +'px';
+    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - 20 +'px';
   }else{
     progress_text.style.display = 'inline';
-    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - progress_text.offsetWidth - 10 +'px';
+    progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - progress_text.offsetWidth - 20 +'px';
   }
 };
 
