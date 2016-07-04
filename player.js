@@ -13,7 +13,6 @@ var btn_volume = document.getElementById('btn-volume');
 var input_volume = document.getElementById('input-volume');
 var input_playback = document.getElementById('input-playback');
 var input_loop = document.getElementById('input-loop');
-//var progress_bar = document.getElementById('progress-bar');
 var progress_bar_container = document.getElementById('progress-bar');
 var progress_bar_in_buffer = document.getElementById('in-buffer');
 var progress_bar_completed = document.getElementById('completed');
@@ -119,7 +118,6 @@ input_playback.onchange = function(){
 
 progress_bar_container.onclick = function(e){
   setTime(e.offsetX / progress_bar_container.offsetWidth);
-
 };
 
 progress_bar_container.onmousedown = function(){
@@ -143,6 +141,8 @@ setInterval(function(){
 
 //* END EVENTS */
 
+//* FUNCTIONS *//
+
 /**
  * Do resizing things that require javascript
  */
@@ -150,8 +150,9 @@ function resize(){
   player.width = window.innerWidth;
   player.height = window.innerHeight;
 
-  if(player.width < 460){
+  if(player.width < 460){   //if the screen is small hide progress text element
     progress_text.style.display = 'none';
+    //                                   width - button * 4 - margin
     progress_bar_container.style.width = player.width - 50 - 50 - 50 - 50 - 20 +'px';
   }else{
     progress_text.style.display = 'inline';
@@ -312,3 +313,5 @@ function updateVolumeIcon(){
 function alertMessage(msg, type){
   alert(msg);
 };
+
+//* END FUNCTIONS *//

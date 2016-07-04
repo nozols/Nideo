@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Nideo video player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="player.css" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   </head>
@@ -11,20 +13,35 @@
       Your browser does not support the video tag. :(
     </video>
     <div id="controls">
-      <div class="control-group"><button id="btn-play-pause" title="play/pause"><i class="fa fa-play"></i></button></div>
-      <div class="control-group"><span id="progress-text" title="progress">Loading</span></div>
+      <div class="control-group">
+        <button id="btn-play-pause" title="play/pause">
+          <i class="fa fa-play"></i>
+        </button>
+      </div>
+      <div class="control-group">
+        <span id="progress-text" title="progress">Loading</span>
+      </div>
       <div class="control-group">
         <div id="progress-bar">
           <div id="in-buffer"></div>
           <div id="completed"></div>
         </div>
       </div>
-      <div class="control-group right"><button id="btn-fullscreen" title="Fullscreen"><i class="fa fa-tv"></i></button></div>
       <div class="control-group right">
-        <button id="btn-settings" title="settings"><i class="fa fa-gears"></i></button>
+        <button id="btn-fullscreen" title="Fullscreen">
+          <i class="fa fa-tv"></i>
+        </button>
+      </div>
+      <div class="control-group right">
+        <button id="btn-settings" title="settings">
+          <i class="fa fa-gears"></i>
+        </button>
         <div class="popup" id="settings">
-          <div class="popup-row">Loop<input type="checkbox" id="input-loop" class="right"></div>
-          <div class="popup-row">Playback speed
+          <div class="popup-row">
+            Loop<input type="checkbox" id="input-loop" class="right">
+          </div>
+          <div class="popup-row">
+            Playback speed
             <select id="input-playback" class="right">
               <option value="0.25">0.25</option>
               <option value="0.5">0.5</option>
@@ -34,14 +51,16 @@
               <option value="4">4</option>
             </select>
           </div>
-          <div class="popup-row" id="about">
+          <div id="about" class="popup-row">
             <a href="#">About Nideo video player</a>
           </div>
         </div>
       </div>
       <div class="control-group right">
-        <button id="btn-volume" title="Volume"><i class="fa fa-volume-up"></i></button>
-        <div class="popup" id="volume">
+        <button id="btn-volume" title="Volume">
+          <i class="fa fa-volume-up"></i>
+        </button>
+        <div id="volume" class="popup">
           <input id="input-volume" type="range" min="0" max="1" step="0.01"/>
         </div>
       </div>
@@ -51,7 +70,9 @@
     </div>
     <div id="share">
       <div class="control-group">
-        <button id="btn-share"><i class="fa fa-share"></i></button>
+        <button id="btn-share">
+          <i class="fa fa-share"></i>
+        </button>
       </div>
     </div>
     <script src="player.js"></script>

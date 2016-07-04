@@ -26,11 +26,13 @@ body{
     -1px 1px 0 #000,
      1px 1px 0 #000;
 }
+
 #share{
   position: absolute;
   top: 5px;
   right: 5px;
 }
+
 #controls{
   width: 100%;
   height: 50px;
